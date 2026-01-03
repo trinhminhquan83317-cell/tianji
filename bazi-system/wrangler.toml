@@ -1,4 +1,4 @@
-name = "tianji-bazi-system"
+name = "tianji-bazi-system" 
 main = "worker/index.js"
 compatibility_date = "2024-01-01"
 account_id = "c9316a2fe8b1f88de9df6c90893c9352"
