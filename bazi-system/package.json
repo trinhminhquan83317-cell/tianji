@@ -1,0 +1,23 @@
+{
+  "name": "tianji-bazi-system",
+  "version": "2.0.0",
+  "description": "天机·八字推演系统 - 专业命理分析平台",
+  "main": "worker/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "echo '无需构建步骤'"
+  },
+  "keywords": [
+    "八字",
+    "命理",
+    "算命",
+    "玄学",
+    "易学"
+  ],
+  "author": "天机系统",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

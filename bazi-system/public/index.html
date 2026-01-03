@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天机 · 八字推演系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/libs/lunar.js"></script>
+</head>
+<body>
+    <!-- 登录界面 -->
+    <div id="login-container" class="container active">
+        <div class="login-card">
+            <div class="seal">
+                <div class="seal-inner">
+                    <span class="seal-text">天机</span>
+                    <span class="seal-subtext">推演</span>
+                </div>
+            </div>
+            <h1 class="title">八字推演系统</h1>
+            <p class="subtitle">窥探天机·预知未来</p>
+            
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" placeholder="请输入用户名" value="老王">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">访问密钥</label>
+                <input type="password" id="password" placeholder="请输入密码" value="123456">
+            </div>
+            
+            <div class="button-group">
+                <button id="login-btn" class="btn-primary">进入系统</button>
+                <button id="guest-btn" class="btn-secondary">游客获取密码</button>
+            </div>
+            
+            <p id="guest-msg" class="guest-message"></p>
+        </div>
+    </div>
+
+    <!-- 主界面 -->
+    <div id="main-container" class="container hidden">
+        <!-- 头部 -->
+        <header class="main-header">
+            <div class="header-left">
+                <div class="logo-small">
+                    <span>天机</span>
+                    <span class="logo-sub">八字</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="user-info" id="welcome-msg"></div>
+            </div>
+            <div class="header-right">
+                <button id="logout-btn" class="btn-secondary">退出</button>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 输入区域 -->
+            <section class="input-section">
+                <h2 class="section-title">命盘信息</h2>
+                
+                <div class="input-grid">
+                    <div class="form-group">
+                        <label for="birth-time">出生日期（公历）</label>
+                        <input type="datetime-local" id="birth-time" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>性别</label>
+                        <div class="gender-options">
+                            <label class="radio-option">
+                                <input type="radio" name="gender" value="1" checked>
+                                <span class="radio-label">乾造（男）</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="gender" value="0">
+                                <span class="radio-label">坤造（女）</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 合婚选项 -->
+                <div class="hehun-toggle">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="enable-hehun">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-label">开启合婚模式</span>
+                    </label>
+                </div>
+                
+                <!-- 合婚输入（默认隐藏） -->
+                <div id="partner-section" class="partner-section hidden">
+                    <h3 class="sub-section-title">对方命盘</h3>
+                    <div class="input-grid">
+                        <div class="form-group">
+                            <label for="partner-birth-time">对方出生日期</label>
+                            <input type="datetime-local" id="partner-birth-time" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>对方性别</label>
+                            <div class="gender-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="partner-gender" value="1">
+                                    <span class="radio-label">男命</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="partner-gender" value="0">
+                                    <span class="radio-label">女命</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="analyze-btn" class="btn-primary analyze-btn">
+                    <span class="btn-icon">☯</span>
+                    推演命盘
+                </button>
+            </section>
+
+            <!-- 结果显示区域 -->
+            <section id="results-section" class="results-section hidden">
+                <!-- 标签页 -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="mingpan">命盘解析</button>
+                    <button class="tab" data-tab="dayun">大运流年</button>
+                    <button class="tab" data-tab="liuyue">流月详情</button>
+                    <button class="tab hidden" id="hehun-tab" data-tab="hehun">合婚鉴评</button>
+                </div>
+                
+                <!-- 标签内容 -->
+                <div class="tab-content">
+                    <div id="mingpan-content" class="tab-pane active"></div>
+                    <div id="dayun-content" class="tab-pane"></div>
+                    <div id="liuyue-content" class="tab-pane"></div>
+                    <div id="hehun-content" class="tab-pane"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 加载遮罩 -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="taiji">
+                <div class="taiji-yin"></div>
+                <div class="taiji-yang"></div>
+            </div>
+            <p class="loading-text">正在演算天机...</p>
+        </div>
+    </div>
+
+    <script src="bazi-core.js"></script>
+    <script src="bazi-database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
